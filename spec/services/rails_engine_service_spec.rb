@@ -149,4 +149,12 @@ RSpec.describe RailsEngineService do
       expect(item[:data][:attributes][:merchant_id]).to be_an(Integer)
     end
   end
+
+  describe "search_merchant_by_fragment" do
+    let(:merchant) { RailsEngineService.search_merchant_by_fragment("iLl") }
+
+    it "returns a json object" do
+      expect(merchant).to be_a(Hash)
+    end
+  end
 end
