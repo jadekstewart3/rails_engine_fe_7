@@ -1,0 +1,13 @@
+<%= form_with url: root_path, method: :get do |form| %>
+  <%= form.label :search %>
+  <%= form.text_field :search %>
+  <%= form.submit "Search" %>
+<% end %>
+
+  <% if @rails_engine.find_one_merchant_by_fragment_search  %>
+      <h1>Merchant</h1>
+      <p><%= link_to "#{@rails_engine.find_one_merchant_by_fragment_search.name}", merchant_path(@rails_engine.find_one_merchant_by_fragment_search.id) %></p>
+  <% else %>
+      <h1>Merchant</h1>
+      <p>No Merchant Found</p>
+  <% end %>

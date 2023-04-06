@@ -6,4 +6,8 @@ class MerchantsController < ApplicationController
   def show
     @rails_engine = RailsEngineFacade.new(params)
   end
+
+  def find
+    @rails_engine = RailsEngineFacade.new(params)
+  end
 end
