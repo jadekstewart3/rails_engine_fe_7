@@ -1,0 +1,8 @@
+<h3><%= @rails_engine.get_one_merchant.name %></h3>
+ <% @rails_engine.get_items.each do |item| %>
+ <ul> 
+  <h5><%= item.name %></h5>
+  <p><h5>Description:</h5> <%= item.description %> </p>
+  <p><h5>Price: </h5><%= number_to_currency(item.unit_price) %> </p>
+</ul>
+  <% end %>

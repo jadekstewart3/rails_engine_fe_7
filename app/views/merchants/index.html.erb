@@ -1,0 +1,3 @@
+<% @rails_engine.get_all_merchants.each do |merchant| %>
+  <li><%= link_to "#{merchant.name}", merchant_path(merchant.id) %></li>
+<% end %>
