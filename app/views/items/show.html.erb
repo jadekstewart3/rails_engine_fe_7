@@ -1,0 +1,3 @@
+<h4><%= @rails_engine.get_one_item.name %></h4>
+<p><h5>Description:</h5> <%= @rails_engine.get_one_item.description %> </p>
+<p><h5>Price: </h5><%= number_to_currency(@rails_engine.get_one_item.unit_price) %> </p>

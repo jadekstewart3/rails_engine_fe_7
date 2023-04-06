@@ -1,0 +1,8 @@
+<% @rails_engine.get_all_merchant_items.each do |item| %>
+  <ul>
+    <h4><%= link_to "#{item.name}", item_path(item.id) %></h4>
+    <p><h5>Description:</h5> <%= item.description %> </p>
+    <p><h5>Price: </h5><%= number_to_currency(item.unit_price) %> </p>
+    --------------------
+  </ul>
+<% end %>

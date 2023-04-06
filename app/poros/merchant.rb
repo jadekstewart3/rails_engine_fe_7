@@ -3,7 +3,6 @@ class Merchant
               :name
 
   def initialize(info)
-    require 'pry'; binding.pry
     @id = info[:id]
     @name = info[:attributes][:name]
   end

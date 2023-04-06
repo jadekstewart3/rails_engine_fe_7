@@ -18,4 +18,19 @@ class RailsEngineService
     response = connection.get("/api/v1/merchants/#{merchant_id}/items")
     JSON.parse(response.body, symbolize_names: true)
   end
+
+  def self.get_all_items
+    response = connection.get("/api/v1/items")
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def self.get_one_item(item_id)
+    response = connection.get("/api/v1/items/#{item_id}")
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def self.search_merchant_by_fragment(fragment)
+    response = connection.get("api/v1/find?name=#{fragment}")
+    JSON.parse(response.body, symbolize_names: true)
+  end
 end

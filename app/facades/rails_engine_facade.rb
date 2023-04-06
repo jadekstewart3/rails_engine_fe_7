@@ -25,10 +25,15 @@ class RailsEngineFacade
     end
   end
 
-  # def merchant_and_items
-  #   merchant = {
-  #                 merchant: get_one_merchant,
-  #                 merch_items: get_items
-  #               }
-  # end
+  def get_all_merchant_items
+    items = RailsEngineService.get_all_items
+    items[:data].map do |item|
+      Item.new(item)
+    end
+  end
+
+  def get_one_item
+    item = RailsEngineService.get_one_item(@id)
+    Item.new(item[:data])
+  end
 end
