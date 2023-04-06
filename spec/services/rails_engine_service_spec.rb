@@ -2,11 +2,11 @@ require "rails_helper"
 RSpec.describe RailsEngineService do 
   describe "get_merchants" do 
 
-    let(:merchants) { RailsEngineService.get_merchants }
+    let(:merchants) { RailsEngineService.new.get_merchants }
 
     it "returns a json object" do
       expect(merchants).to be_a(Hash)
-
+      
       expect(merchants).to have_key(:data)
       expect(merchants[:data]).to be_an(Array)
     end
@@ -30,7 +30,7 @@ RSpec.describe RailsEngineService do
 
   describe "get_one_merchant" do
 
-    let(:merchant) { RailsEngineService.get_one_merchant(1) }
+    let(:merchant) { RailsEngineService.new.get_one_merchant(1) }
     
     it "returns a json object" do
       expect(merchant).to be_a(Hash)
@@ -47,7 +47,7 @@ RSpec.describe RailsEngineService do
   end
 
   describe "get_merchant_items" do 
-    let(:merchant_items) { RailsEngineService.get_merchant_items(1) }
+    let(:merchant_items) { RailsEngineService.new.get_merchant_items(1) }
 
     it "returns a json object" do
       expect(merchant_items).to be_a(Hash)
@@ -83,7 +83,7 @@ RSpec.describe RailsEngineService do
   end
 
   describe "get_all_items" do
-    let(:items) { RailsEngineService.get_all_items }
+    let(:items) { RailsEngineService.new.get_all_items }
     it "returns a json object" do
       expect(items).to be_a(Hash)
 
@@ -118,7 +118,7 @@ RSpec.describe RailsEngineService do
   end
 
   describe "get-one_item" do
-    let(:item) { RailsEngineService.get_one_item(4) }
+    let(:item) { RailsEngineService.new.get_one_item(4) }
     it "returns a json object" do
        expect(item).to be_a(Hash)
 
@@ -151,10 +151,26 @@ RSpec.describe RailsEngineService do
   end
 
   describe "search_merchant_by_fragment" do
-    let(:merchant) { RailsEngineService.search_merchant_by_fragment("iLl") }
+    let(:merchant) { RailsEngineService.new.search_merchant_by_fragment("iLl") }
 
     it "returns a json object" do
       expect(merchant).to be_a(Hash)
+      expect(merchant).to have_key(:data)
+      expect(merchant[:data]).to be_a(Hash)
+    end
+
+    it "has the correct keys and values" do
+      expect(merchant[:data]).to have_key(:id)
+      expect(merchant[:data][:id]).to be_a(String)
+
+      expect(merchant[:data]).to have_key(:type)
+      expect(merchant[:data][:type]).to be_a(String)
+
+      expect(merchant[:data]).to have_key(:attributes)
+      expect(merchant[:data][:attributes]).to be_a(Hash)
+
+      expect(merchant[:data][:attributes]).to have_key(:name)
+      expect(merchant[:data][:attributes][:name]).to be_a(String)
     end
   end
 end

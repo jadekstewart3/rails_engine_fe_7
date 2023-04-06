@@ -5,7 +5,7 @@ RSpec.describe RailsEngineFacade do
   
   describe "#merchant_list" do
     it "returns a list of merchant names" do
-      merchants_list = RailsEngineFacade.new(empty: "") 
+      merchants_list = RailsEngineFacade.new({}) 
     
       merchants = merchants_list.get_all_merchants
       merchants.take(5).each do |merchant|
@@ -44,7 +44,7 @@ RSpec.describe RailsEngineFacade do
 
   describe "get_all_items" do
     it "returns a list of all merchants items" do 
-      items_json = RailsEngineFacade.new(empty: "")
+      items_json = RailsEngineFacade.new({})
       items = items_json.get_all_merchant_items
 
       items.each do |item|
@@ -69,6 +69,17 @@ RSpec.describe RailsEngineFacade do
       expect(item.name).to be_a(String)
       expect(item.description).to be_a(String)
       expect(item.unit_price).to be_a(Float)
+    end
+  end
+
+  describe "find_one_merchant_by_fragment_search" do
+    it "returns one merchant that is like the search fragment" do
+      merchant_json = RailsEngineFacade.new(search: "iLl")
+      merchant = merchant_json.find_one_merchant_by_fragment_search
+      
+      expect(merchant).to be_a(Merchant)
+      expect(merchant.id).to be_a(String)
+      expect(merchant.name).to be_a(String)
     end
   end
 end
